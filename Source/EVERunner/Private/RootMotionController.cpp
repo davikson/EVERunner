@@ -27,7 +27,7 @@ void ARootMotionController::SetupInputComponent()
 void ARootMotionController::MoveRight(float value)
 {
 	axisXValue = value;
-	pawnReference->AddMovementInput(FVector::RightVector, FMath::Sign(value));
+	pawnReference->AddMovementInput(FVector::LeftVector, FMath::Sign(value));
 }
 void ARootMotionController::JumpPressed()
 {
