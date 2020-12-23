@@ -45,4 +45,14 @@ protected:
 	void SprintReleased();
 	void CrouchPressed();
 	void CrouchReleased();
+
+public:
+	UFUNCTION(BlueprintCallable)
+	float GetXAxisValue() const { return axisXValue; }
+	UFUNCTION(BlueprintCallable)
+	bool GetIsJumpPressed() const { return isJumpPressed; }
+	UFUNCTION(BlueprintCallable)
+	bool GetIsSprintPressed() const { return isSprintPressed; }
+	UFUNCTION(BlueprintCallable)
+	bool GetIsCrouchPressed() const { return isCrouchPressed; }
 };

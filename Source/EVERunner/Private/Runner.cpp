@@ -38,7 +38,7 @@ ARunner::ARunner()
 
 	// Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = true; // Face in the direction we are moving..
-	GetCharacterMovement()->RotationRate = FRotator(0.0f, 5.0f, 0.0f); // ...at this rotation rate
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 100.0f, 0.0f); // ...at this rotation rate
 	GetCharacterMovement()->GravityScale = 2.f;
 	GetCharacterMovement()->JumpZVelocity = 1000.f;
 	GetCharacterMovement()->GroundFriction = 3.f;
@@ -47,6 +47,9 @@ ARunner::ARunner()
 	GetCharacterMovement()->AirControl = 0.f;
 	GetCharacterMovement()->AirControlBoostMultiplier = 0.f;
 	GetCharacterMovement()->AirControlBoostVelocityThreshold = 0.f;
+
+	GetCharacterMovement()->SetPlaneConstraintEnabled(true);
+	GetCharacterMovement()->SetPlaneConstraintAxisSetting(EPlaneConstraintAxisSetting::X);
 }
 
 // Called when the game starts or when spawned
