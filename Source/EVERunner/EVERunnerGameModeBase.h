@@ -14,4 +14,6 @@ class EVERUNNER_API AEVERunnerGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 	
+public:
+	AEVERunnerGameModeBase();
 };
