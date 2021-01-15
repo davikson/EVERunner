@@ -52,17 +52,8 @@ ARunner::ARunner()
 	GetCharacterMovement()->SetPlaneConstraintAxisSetting(EPlaneConstraintAxisSetting::X);
 }
 
-// Called when the game starts or when spawned
-void ARunner::BeginPlay()
+void ARunner::LooseStamina(float ammount)
 {
-	Super::BeginPlay();
-	
-}
-
-// Called every frame
-void ARunner::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
+	stamina = (stamina > ammount) ? stamina - ammount : 0;
 }
 

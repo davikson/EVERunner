@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
+#include "TimerManager.h"
 #include "RootMotionController.h"
 
 void ARootMotionController::BeginPlay()
@@ -39,11 +40,16 @@ void ARootMotionController::JumpReleased()
 }
 void ARootMotionController::SprintPressed()
 {
-	isSprintPressed = true;
+	if (characterReference->GetStamina() > 0.f)
+	{
+		isSprintPressed = true;
+		GetWorldTimerManager().SetTimer(sprintTimerHandle, this, &ARootMotionController::TickStaminaDrain, staminaDrainTickTime, true);
+	}
 }
 void ARootMotionController::SprintReleased()
 {
 	isSprintPressed = false;
+	GetWorldTimerManager().ClearTimer(sprintTimerHandle);
 }
 void ARootMotionController::CrouchPressed()
 {
@@ -52,4 +58,13 @@ void ARootMotionController::CrouchPressed()
 void ARootMotionController::CrouchReleased()
 {
 	isCrouchPressed = false;
+}
+
+void ARootMotionController::TickStaminaDrain()
+{
+	characterReference->LooseStamina(staminaDrainRatePerTick);
+	if (characterReference->GetStamina() <= 0)
+	{
+		SprintReleased();
+	}
 }

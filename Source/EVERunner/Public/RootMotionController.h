@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "Engine/EngineTypes.h"
 #include "RootMotionController.generated.h"
 
 UINTERFACE()
@@ -16,6 +17,8 @@ class IRootMotionCharacterInterface
 {
 	GENERATED_BODY()
 public:
+	virtual float GetStamina() = 0;
+	virtual void LooseStamina(float ammount) = 0;
 };
 
 /**
@@ -29,10 +32,17 @@ class EVERUNNER_API ARootMotionController : public APlayerController
 	APawn* pawnReference;
 	IRootMotionCharacterInterface* characterReference;
 
+	static constexpr float staminaDrainRatePerTick = 2;
+	static constexpr float staminaDrainTickTime = .1f;
+
 	float axisXValue;
 	bool isJumpPressed;
 	bool isSprintPressed;
 	bool isCrouchPressed;
+	
+	FTimerHandle sprintTimerHandle;
+
+	void TickStaminaDrain();
 
 protected:
 	virtual void BeginPlay() override;

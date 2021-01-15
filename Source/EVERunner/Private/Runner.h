@@ -18,7 +18,6 @@ public:
 	ARunner();
 
 protected:
-
 	/** Side view camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 	class UCameraComponent* SideViewCameraComponent;
@@ -27,11 +26,11 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 	class USpringArmComponent* CameraBoom;
 
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	static constexpr float maxStaminaAmmount = 100;
+	float stamina = 0;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+public:
+	virtual float GetStamina() override { return stamina; }
+	virtual void LooseStamina(float ammount) override;
 
 };
