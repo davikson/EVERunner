@@ -56,7 +56,7 @@ void ARunner::BeginPlay()
 {
 	Super::BeginPlay();
 	UUserWidget* widget = CreateWidget<UUserWidget>(GetWorld(), widgetClass, TEXT("user widget"));
-	widget->AddToViewport();
+	widget->AddToViewport(-1);
 	characterWidget = Cast<UCharacterWidget>(widget);
 	characterWidget->UpdateStamina(GetStaminaPercent());
 }
