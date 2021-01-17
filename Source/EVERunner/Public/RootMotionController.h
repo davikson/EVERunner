@@ -17,8 +17,9 @@ class IRootMotionCharacterInterface
 {
 	GENERATED_BODY()
 public:
-	virtual float GetStamina() = 0;
+	virtual float GetStamina() const = 0;
 	virtual void LooseStamina(float ammount) = 0;
+	virtual void GainStamina(float ammount) = 0;
 };
 
 /**

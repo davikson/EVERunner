@@ -52,8 +52,25 @@ ARunner::ARunner()
 	GetCharacterMovement()->SetPlaneConstraintAxisSetting(EPlaneConstraintAxisSetting::X);
 }
 
-void ARunner::LooseStamina(float ammount)
+void ARunner::BeginPlay()
 {
-	stamina = (stamina > ammount) ? stamina - ammount : 0;
+	Super::BeginPlay();
+	UUserWidget* widget = CreateWidget<UUserWidget>(GetWorld(), widgetClass, TEXT("user widget"));
+	widget->AddToViewport();
+	characterWidget = Cast<UCharacterWidget>(widget);
+	characterWidget->UpdateStamina(GetStaminaPercent());
+}
+
+void ARunner::LooseStamina(float ammountLost)
+{
+	stamina = (stamina > ammountLost) ? stamina - ammountLost : 0;
+	characterWidget->UpdateStamina(GetStaminaPercent());
+}
+
+void ARunner::GainStamina(float ammountRecovered)
+{
+	float tmpStamina = stamina + ammountRecovered;
+	stamina = (tmpStamina > maxStaminaAmmount) ? maxStaminaAmmount : tmpStamina;
+	characterWidget->UpdateStamina(GetStaminaPercent());
 }
 

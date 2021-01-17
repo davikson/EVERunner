@@ -30,7 +30,6 @@ class EVERUNNER_API ALevelController : public AActor
 	void UpdateCheckpointVariables();
 
 	float timeElapsed;
-	float totalTimeElapsed;
 	float targetTime;
 	float doorClosingTime;
 	static constexpr float timeIncrement = .1f;

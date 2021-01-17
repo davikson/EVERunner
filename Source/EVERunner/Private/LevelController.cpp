@@ -8,7 +8,6 @@
 ALevelController::ALevelController()
 {
 	timeElapsed = 0;
-	totalTimeElapsed = 0;
 	targetTime = 0;
 	doorClosingTime = 0;
 	activeCheckpoint = 0;
@@ -30,14 +29,13 @@ void ALevelController::BeginPlay()
 void ALevelController::UpdateTime()
 {
 	timeElapsed += timeIncrement;
-	totalTimeElapsed += timeIncrement;
 	const float timeRemaining = GetTimeRemaining();
 	levelWidget->UpdateTimeRemaining(timeRemaining);
 	if (timeRemaining <= 0)
 	{
-		//gameover
 		GetWorldTimerManager().ClearTimer(timerHandle);
 		levelWidget->UpdateTimeRemaining(0);
+		levelWidget->ShowGameOverScreen();
 	}
 	else if (timeRemaining <= doorClosingTime)
 	{
@@ -56,6 +54,7 @@ void ALevelController::UpdateCheckpointVariables()
 	else
 	{
 		GetWorldTimerManager().ClearTimer(timerHandle);
+		levelWidget->ShowLevelFinishedScreen(timeElapsed);
 	}
 }
 
