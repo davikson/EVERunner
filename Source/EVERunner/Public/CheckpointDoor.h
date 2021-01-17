@@ -28,7 +28,7 @@ protected:
 	void CallCheckpointReached(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	UPROPERTY(VisibleAnywhere)
-	UBoxComponent* triggrBox;
+	UBoxComponent* triggerBox;
 
 	static constexpr float doorClosinTime = 5.f;
 	static constexpr float closingDelayAfterPassingCheckpoint = 1.f;

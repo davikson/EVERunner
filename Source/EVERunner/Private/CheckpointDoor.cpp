@@ -7,14 +7,14 @@
 
 ACheckpointDoor::ACheckpointDoor()
 {
-	triggrBox = CreateDefaultSubobject<UBoxComponent>(TEXT("Trigger box"));
-	triggrBox->SetupAttachment(RootComponent);
+	triggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("Trigger box"));
+	triggerBox->SetupAttachment(RootComponent);
 }
 
 void ACheckpointDoor::BeginPlay()
 {
 	Super::BeginPlay();
-	triggrBox->OnComponentBeginOverlap.AddDynamic(this, &ACheckpointDoor::CallCheckpointReached);
+	triggerBox->OnComponentBeginOverlap.AddDynamic(this, &ACheckpointDoor::CallCheckpointReached);
 }
 
 void ACheckpointDoor::StartClosingDoor()
