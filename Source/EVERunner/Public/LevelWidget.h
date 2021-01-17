@@ -27,8 +27,8 @@ public:
 	virtual void UpdateTimeRemaining_Implementation(float timeRemaining) {}
 
 	UFUNCTION(BlueprintNativeEvent, Category=LevelWidget)
-	void ShowGameOverScreen();
-	virtual void ShowGameOverScreen_Implementation() {}
+	void ShowGameOverScreen(bool playerKilled = false);
+	virtual void ShowGameOverScreen_Implementation(bool playerKilled = false) {}
 
 	UFUNCTION(BlueprintNativeEvent, Category=LevelWidget)
 	void ShowLevelFinishedScreen(float timeElapsed);

@@ -43,6 +43,8 @@ class EVERUNNER_API ALevelController : public AActor
 public:	
 	ALevelController();
 
+	void PlayerKilled();
+
 protected:
 	virtual void BeginPlay() override;
 

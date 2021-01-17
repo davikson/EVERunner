@@ -63,3 +63,10 @@ void ALevelController::NextCheckpoint()
 	activeCheckpoint++;
 	UpdateCheckpointVariables();
 }
+
+void ALevelController::PlayerKilled()
+{
+	bool playerKilled = true;
+	levelWidget->ShowGameOverScreen(playerKilled);
+	GetWorldTimerManager().ClearTimer(timerHandle);
+}
